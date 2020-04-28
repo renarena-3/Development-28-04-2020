@@ -1,0 +1,16 @@
+.image{
+  height:40em; background-size:cover; width:auto;
+  background-image:url('../../../assets/images/menubg1.jpg');
+  background-position:50% 50%;
+} 
+/* menuBackgroundImage {
+	position: relative;
+	height : 100vh;
+	background-image: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(50,50,50,.4)),
+	url(../../../assets/images/menubg.jpg);
+	width: 100%;
+	background-size: cover;
+	background-position: right;	
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 86%, 0% 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 86%, 0% 100%);
+} */

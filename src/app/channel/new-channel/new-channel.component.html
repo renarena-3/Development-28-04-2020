@@ -1,0 +1,290 @@
+<!-- Copyright (c) 2019 Dream Tekis Software Pvt. Ltd. All rights reserved.-->
+<form [formGroup]="newchannelForm">
+    <div id="newChannel" class="container-fluid feature-title-bar leftOverlay sh-leftOverlayOpen">
+      <!-- <span class="close-right-overlay" title="Close" (click)="closeSideNav()">
+        <span class="close-right-overlay-inner"></span>
+      </span> -->
+      <div class="configFeature-title">
+        <h4 class="feature-header">New Channel</h4><small class="text-success text-lowercase hideWhenSmall">configure your prospective channel</small>
+        <div class="form-inline ml-auto">
+          <button type="submit" class="btn btn-dark mr-2 hideWhenSmall" data-placement="bottom" title="save" data-target="#saveModalChannel"
+            data-toggle="modal" data-backdrop="static">
+            <i class="fa fa-save pr-2"></i>Save</button>
+          <button type="button" class="btn btn-outline-dark hideWhenSmall" data-placement="bottom" title="cancel" data-target="#cancelModalChannel"
+            data-toggle="modal" data-backdrop="static">
+            <i class="fa fa-times pr-2"></i>Cancel</button>
+          <button type="button" class="btn btn-outline-dark rounded-circle showWhenSmall" sh-show-data="tooltip" data-placement="bottom"
+            title="cancel" data-target="#cancelModalChannel" data-toggle="modal" data-backdrop="static">
+            <i class="fa fa-close"></i>
+          </button>
+        </div>
+      </div>
+      <div class="dropdown-xl-large scommon-scrollbar">
+        <div class="card card-shadow">
+          <div class="card-header d-flex align-items-center">
+            <div>
+              <i class="fa fa-user pr-2"></i>
+              <a href="#" class="text-dark" data-toggle="collapse" data-target="#newChannelDetails" aria-expanded="true">channel details</a>
+            </div>
+            <div class="ml-auto">
+              <span class="border-left pr-3"></span>
+              <i class="fa fa-gear pr-2"></i>
+              <span class="border-left pr-3"></span>
+              <i class="fa fa-angle-double-down expand-collapse-rotate" data-toggle="collapse" data-target="#newChannelDetails,#newChannelAddressDetails,#newChannelLimits,#newChannelComments" title="Expand/Collapse"></i>
+            </div>
+          </div>
+          <div class="collapse show" id="newChannelDetails">
+            <div class="card-body p-2">
+              <div class="row m-0 d-flex">
+                <div class="col-lg-3 col-sm-4">
+                  <div class="upload-img m-auto ">
+                    <label class="control-label" for="fileInput">
+                      <!-- <img src="assets/images/male.png" class="over-image"> -->
+                      <div class="overlay-file">
+                        <div class="over-text">ChangePicture</div>
+                      </div>
+                    </label>
+                    <input type="file" id="fileInput" class="display-none">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Channel Id
+                      <i class="fa fa-asterisk asterisk-red"></i>
+                    </label>
+                    <input type="text" class="form-control form-control-sm" formControlName="channelid" Uppercase >
+                    <span *ngIf="!newchannelForm.get('channelid').valid &&newchannelForm.get('channelid').touched && newchannelForm.get('channelid')"
+           class="help-block">Please enter a channel id</span>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Channel Name
+                      <i class="fa fa-asterisk sh-asterisk-red"></i>
+                    </label>
+                    <input type="text" class="form-control form-control-sm" formControlName="name" FirstUppercase >
+                    <span *ngIf="!newchannelForm.get('name').valid &&newchannelForm.get('name').touched && newchannelForm.get('name')"
+                    class="help-block">Please enter a channel name</span>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Channel Type
+                      <i class="fa fa-asterisk sh-asterisk-red"></i>
+                    </label>
+                    <select  formControlName="channeltype">
+                      <option [ngValue]="source.fieldvalue" 
+                        *ngFor="let source of (slaparam._slaparamData$ | async | filter :{fieldname:'channeltype'})"
+                        selected="source.defaultvalue =='Y'">{{source.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-center align-items-center ">
+                  <div class="form-group">
+  
+                    <div class="custom-control custom-checkbox custom-control-inline custom-control-right ">
+                      <input type="checkbox" id="systemAccess" name="custom1" class="custom-control-input sh-icon-pointer" formControlName="systemaccess">
+                      <label class="custom-control-label sh-icon-pointer" for="systemAccess">provide system access</label>
+  
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">VAT Registration</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="identificationno1" >
+                  </div>
+                </div>
+  
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">start Date</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="startdt">
+                    <span class="fa fa-calendar-check-o mt-n4 mr-1 float-right sh-icon-pointer"></span>
+                  </div>
+                </div>
+  
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">status</label>
+                    <select class="form-control form-control-sm" formControlName="status">
+                      <option></option>
+                      <option [ngValue]="source.fieldvalue"   
+                       *ngFor="let source of (slaparam._slaparamData$ | async | filter :{fieldname:'status'})"
+                        selected="source.defaultvalue =='Y'">{{source.name}}</option> 
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">mobile</label>
+                    <input type="text"  class="form-control form-control-sm" formControlName="mobile">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">email</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="emailid" >
+                    <span *ngIf="!newchannelForm.get('emailid').valid &&newchannelForm.get('emailid').touched && newchannelForm.get('emailid')"
+                    class="help-block">Please enter a Email Id</span>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">AlternateMobile</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="secphone">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">AlternateEmail</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="secemail" >
+                  </div>
+                </div>
+  
+              </div>
+              <hr>
+             
+              <div class="row m-0">
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">CommissionId</label>
+                    <select class="form-control form-control-sm" formControlName="commissionid">
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">BusinessDescription</label>
+                    <textarea rows="1" class="form-control form-control-sm sh-textarea" formControlName="busndesc" FirstUppercase></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-shadow">
+          <div class="card-header d-flex align-items-center">
+            <div>
+              <i class="fa fa-map-marker pr-2"></i>
+              <a href="#" class="text-dark" data-toggle="collapse" data-target="#newChannelAddressDetails" aria-expanded="true">Address Details</a>
+            </div>
+          </div>
+          <div class="collapse show" id="newChannelAddressDetails">
+            <div class="card-body p-2">
+              <div class="row m-0">
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Building No</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="addr1">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Street No</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="addr2">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle"> City</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="city" FirstUppercase>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label">District</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="district" FirstUppercase>
+                  </div>
+                </div>
+                <!--    <div class="col-lg-3 col-md-4 col-sm-4">
+      <div class="form-group">
+       <label class="control-label vertical-align-middle">State</label> 
+       <select class="form-control form-control-sm">
+           <option></option>
+         </select>
+      </div>
+     </div>
+  
+     <div class="col-lg-3 col-md-4 col-sm-4">
+       <div class="form-group">
+         <label class=" control-label ">Country</label> 
+         <select class="form-control form-control-sm">
+           <option></option>
+         </select>
+       </div>
+     </div> -->
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">Zip Code</label>
+                    <input type="text"  class="form-control form-control-sm" formControlName="zipcode">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label"> Addtional No</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="dynafld01">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class=" control-label">Unit No</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="dynafld02">
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+        <div class="card card-shadow">
+          <div class="card-header d-flex align-items-center">
+            <div>
+              <i class="fa fa-usd pr-2"></i>
+              <a href="#" class="text-dark" data-toggle="collapse" data-target="#newChannelLimits" aria-expanded="true">Credit Limit</a>
+            </div>
+          </div>
+          <div class="collapse show" id="newChannelLimits">
+            <div class="card-body p-2">
+              <div class="row m-0">
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Credit Limit</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="creditlimit" DecimalNumber>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label vertical-align-middle">Used Limit</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="usedlimit" DecimalNumber>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-shadow">
+          <div class="card-header d-flex align-items-center">
+            <div>
+              <i class="fa fa-comments-o pr-2"></i>
+              <a href="#" class="text-dark" data-toggle="collapse" data-target="#newChannelComments" aria-expanded="true">Comments</a>
+            </div>
+          </div>
+          <div class="collapse show" id="newChannelComments">
+            <div class="card-body p-2">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <textarea rows="2" class="form-control form-control-sm" formControlName="comments" ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sh-blankRow"></div>
+  
+      </div>
+    </div>
+  </form>
